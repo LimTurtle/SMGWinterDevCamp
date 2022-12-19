@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Categories Database:</title>
+</head>
+
+<style>
+    nav{
+    	font-size: 12pt;
+    	font-family: 'PT Sans', Arial, Sans-serif;
+    	position: relative;
+    }
+    nav ul{
+    	padding: 0;
+    	margin: 0 auto;
+    	width: auto;
+    }
+    nav li{
+    }
+    nav a{
+    	line-height: 50px;
+      height: 50px;
+    }
+    nav li a{
+    	box-sizing: border-box;
+    	-moz-box-sizing: border-box;
+    	-webkit-box-sizing: border-box;
+    }
+    nav li:last-child a{
+    	border-right: 0;
+        }
+    nav a:hover, nav a:active{
+    }
+    nav a#pull{
+    	display: none;
+    }
+      html {
+      -webkit-touch-callout:none;
+      -webkit-user-select:none;
+      -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+      }
+
+      ul{
+        /*list-style-type: none;*/
+        margin: 0;
+        padding: 0;
+        background-color: #333;
+        text-align: center;
+      }
+      li{
+        /*position: relative;*/
+        display: inline-block;
+      }
+      li a{
+        color: #FFFFFF;
+        text-align: center;
+        padding: 14.5px 16px;
+        text-decoration: none;
+      }
+      li a:hover{
+        /*color: #597812;*/
+        color: #FFD400;
+        font-weight:normal;
+      }
+      .menu {
+       width: 5000px;
+       height: 50px;
+       text-align: center;
+       max-width: 100%;
+       background-position: center;
+       background-size: cover;
+       background-color: #333333;color: white;
+       position: absolute;z-index: 1;
+     }
+    </style>
+
+<body topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" style="background-color:#F6F6F6">
+    <div class="menu" >
+      <nav class="clearfix">
+        <ul class="clearfix">
+          <li><a href="{% url 'index' %}">Home</a></li>
+      </ul>
+      <a id="pull" href="#"></a>
+    </nav>
+    </div>
+  </body>
+
+<body>
+
+<br>
+<br>
+<h2>SQL Query문 선택</h2>
+<form action="{% url 'result'%}" method="POST">
+    {% csrf_token %}
+    <button type="submit" name="Create" value="Create">Create</button>
+    <button type="submit" name="Insert" value="Insert">Insert</button>
+    <button type="submit" name="Prob1" value="Prob1">Prob1</button>
+    <button type="submit" name="Prob2" value="Prob2">Prob2</button>
+    <button type="submit" name="Prob3" value="Prob3">Prob3</button>
+    <button type="submit" name="Prob4" value="Prob4">Prob4</button>
+</form>
+
+<br>
+<br>
+{% if createStatus == True or insertStatus == True%}
+<h2>Result</h2>
+{{testValue}}
+{% else %}
+{% endif %}
+
+{% if output1 %}
+<br>
+<br>
+<h2>1 : Find the average hard disk size of PCs</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Harddisk Average</th>
+    </tr>
+    </thead>
+{% for i in output1 %}
+    <tr>
+        <td>{{ i.HDAverage }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{% elif output2 %}
+<br>
+<br>
+<h2>2 : Find the average speed of laptop for each maker</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Maker</th>
+            <th>Speed Average</th>
+    </tr>
+    </thead>
+{% for i in output2 %}
+    <tr>
+        <td>{{ i.maker }}</td>
+        <td>{{ i.speedAverage }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{% elif output3 %}
+<br>
+<br>
+<h2>3 : Find the price of laptop, which is the only laptop model of the maker</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Maker</th>
+            <th>Model</th>
+            <th>Price</th>
+    </tr>
+    </thead>
+{% for i in output3 %}
+    <tr>
+        <td>{{ i.maker }}</td>
+        <td>{{ i.model }}</td>
+        <td>{{ i.price }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{% elif output4 %}
+<br>
+<br>
+<h2>4 : Find the model and price of the printer of the highest price of each maker</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Maker</th>
+            <th>Model</th>
+            <th>Price</th>
+    </tr>
+    </thead>
+{% for i in output4 %}
+    <tr>
+        <td>{{ i.maker }}</td>
+        <td>{{ i.model }}</td>
+        <td>{{ i.price }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{% else %}
+{% endif %}
+
+</body>
+</html>
