@@ -103,7 +103,12 @@
 <h2>Result</h2>
 
 {% for i in output %}
-    <input type="text" name="shortURL" value="{{i.shortURL}}" readonly/>
+
+    <form action="{% url 'index'%}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="shortURL" value="{{i.shortURL}}" readonly/>
+        <button type="submit" name="copyBtn" value="copyBtn">copy</button>
+    </form>
 {% endfor %}
 {% else %}
 

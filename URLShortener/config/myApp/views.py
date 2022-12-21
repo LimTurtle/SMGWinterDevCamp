@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.db import connection
+import clipboard
 
 
 def hash(url):
@@ -23,6 +24,9 @@ def shortener(url):
     return shortURL
 
 def display(request):
+    if request.POST.get("copyBtn"):
+        fetchResult = request.POST['shortURL']
+        clipboard.copy(str(fetchResult))
     return render(request, 'myApp/index.html')
 
 def urlResult(request):
