@@ -20,17 +20,24 @@
   </body>
 
 <body>
-
-
 <br>
 <br>
-<h2>URL Shortener</h2>
-<form action="{% url 'urlResult'%}" method="POST">
-    {% csrf_token %}
-    <input name="originURL" type="text" class="originURL"/>
-    <input type="submit" value="변환" class="convertBtn"/>
-</form>
-
+<table>
+    <thead>
+        <tr>
+            <th>Origin URL</th>
+            <th>Short URL</th>
+            <th class="hash">Origin Hash</th>
+        </tr>
+    </thead>
+    {% for i in inqOutput %}
+    <tr>
+        <td>{{i.originURL}}</td>
+        <td>{{i.shortURL}}</td>
+        <td class="hash">{{i.originHash}}</td>
+    </tr>
+    {% endfor %}
+</table>
 </body>
 
 </html>

@@ -76,3 +76,15 @@ def origin(request, shortURL):
     except:
         return render(request, 'myApp/index.html')
 
+def inquiry(request):
+    outputOfQuery = []
+    with connection.cursor() as cursor:
+        sqlQuery = "select * from url;"
+        cursor.execute(sqlQuery)
+        fetchResult = cursor.fetchall()
+        connection.commit()
+        connection.close()
+        for temp in fetchResult:
+            eachRow = {'originURL': temp[0], 'shortURL': temp[1], 'originHash':temp[2]}
+            outputOfQuery.append(eachRow)
+    return render(request, 'myApp/inquiry.html', {'inqOutput':outputOfQuery})

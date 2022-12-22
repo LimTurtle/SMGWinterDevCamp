@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from myApp import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('', views.display, name='index'),
@@ -23,5 +25,7 @@ urlpatterns = [
     #당연히 :8000/ 주소에 index , :8000/ 주소에 result 주소라고 생각하므로
     #충돌 생길수 밖에 없음. 따라서 다른 주소 사용
     path('urlResult/', views.urlResult, name='urlResult'),
+    path('inquiry', views.inquiry, name='inquiry'),
     path('<shortURL>/', views.origin, name='origin'),
 ]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
