@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Database Assignment2</title>
+    <title>URL Shortener</title>
 </head>
 
 {% load static %}
@@ -33,17 +33,15 @@
 
 <br>
 <br>
-{% if urlConvert == True %}
-
-{% for i in output %}
+{% if urlConvert == True and shortURL%}
 
     <form action="{% url 'index'%}" method="POST">
         {% csrf_token %}
         <div style="display:inline;" class="res">Result : </div>
-        <input type="text" name="shortURL" value="{{i.shortURL}}" class="shortURL" readonly/>
+        <input type="text" name="shortURL" value="{{shortURL}}" class="shortURL" readonly/>
         <button type="submit" name="copyBtn" value="copyBtn" class="copyBtn">copy</button>
     </form>
-{% endfor %}
+
 {% else %}
 
 {% endif %}
