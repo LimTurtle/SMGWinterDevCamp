@@ -1,3 +1,5 @@
+# 12/25 URL Shortener 개인 프로젝트 완료
+
 # 프로젝트 소개
 백엔드 경험이 거의 없기에, URL Shortener를 만들어 보며 python, django, mysql에 익숙해지기 위해 진행한 프로젝트입니다.
 
